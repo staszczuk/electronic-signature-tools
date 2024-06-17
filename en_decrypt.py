@@ -41,10 +41,13 @@ def decrypt_file_with_rsa(encrypted_file_path, private_key_path, pin):
 
     plaintext = rsa_cipher.decrypt(ciphertext)
 
-    base, ext = os.path.splitext(encrypted_file_path)
-    if base.endswith(".enc"):
-        base = base[:-4]
-    decrypted_file_path = base + "_decrypted" + ext
+    base, enc_ext = os.path.splitext(encrypted_file_path)
+    if enc_ext == ".enc":
+        base, original_ext = os.path.splitext(base)
+        decrypted_file_path = base + "_decrypted" + original_ext
+    else:
+        decrypted_file_path = base + "_decrypted" + enc_ext
+
     with open(decrypted_file_path, "wb") as file:
         file.write(plaintext)
 
