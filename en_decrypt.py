@@ -1,4 +1,4 @@
-from Crypto.Cipher import AES, PKCS1_OAEP
+from Crypto.Cipher import PKCS1_OAEP
 from Crypto.PublicKey import RSA
 from common import decrypt_private_key
 import os
